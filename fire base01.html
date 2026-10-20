@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Firebase_form</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="box">
+            <div class="form">
+                <h2>Login Form</h2>
+                <form>
+                    <div class="inputbox">
+                        <span>username</span>
+                        <input type="text" value="" id="username" placeholder="ex: Cecilia" required>
+                    </div>
+                    <div class="inputbox">
+                        <span>E-mail</span>
+                        <input type="email" value="" id="email" placeholder="ex: asafe@asafe.com" required>
+                    </div>
+                    <div class="inputbox">
+                        <span>Phone Number</span>
+                        <input type="text" value="" id="phone" placeholder="ex: 31 9 95357543" required>
+
+                       <p> turma</p>
+                       <select name="turma" id="turma">
+                        <option value="2 info">2 info</option>
+                           <option value="2 logística">2 logística</option>
+                           <option value="2 agronegócio">2 agronegócio</option>
+                    </select>
+
+
+                    </div>
+                    <button type="submit" id="submit" class="sub">Submit</button> 
+                </form>
+            </div>
+        </div>
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+              apiKey: "AIzaSyA3_hl23zswaTuhZRff6TycKungd0K0W3s",
+              authDomain: "hadassah-95d15.firebaseapp.com",
+              databaseURL: "https://hadassah-95d15-default-rtdb.firebaseio.com",
+              projectId: "hadassah-95d15",
+              storageBucket: "hadassah-95d15.firebasestorage.app",
+              messagingSenderId: "948283679448",
+              appId: "1:948283679448:web:ce0df54743218ac2836dad",
+              measurementId: "G-BDY50WZTFM"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+            const db = getDatabase(app);
+
+    // CORREÇÃO: "document" digitado corretamente e id referenciado
+    document.getElementById("submit").addEventListener('click', function(e){
+        e.preventDefault();
+        
+        set(ref(db, 'hadassa/' + document.getElementById("username").value),
+        {
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            PhoneNumber: document.getElementById("phone").value
+        })
+        .then(() => {
+            alert("Login Sucessfull !");
+        })
+            })
+          </script>
+          </body>
+          </html>
+        
